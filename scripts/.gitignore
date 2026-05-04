@@ -1,0 +1,12 @@
+# data files
+*.csv
+*.xlsx
+data/
+
+# environment
+.venv/
+__pycache__/
+
+# secrets
+.env
+*.key
