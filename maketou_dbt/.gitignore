@@ -1,4 +1,6 @@
-
-target/
-dbt_packages/
+.venv/
+data/
 logs/
+*.csv
+*.xlsx
+.DS_Store
