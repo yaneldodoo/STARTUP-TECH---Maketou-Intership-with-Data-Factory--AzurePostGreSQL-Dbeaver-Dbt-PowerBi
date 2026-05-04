@@ -1,0 +1,14 @@
+maketou_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: maketouintership.postgres.database.azure.com
+      user: maketouintership
+      password: Yanel2005
+      dbname: postgres
+      schema: dbt
+      port: 5432
+      sslmode: require
+
+
