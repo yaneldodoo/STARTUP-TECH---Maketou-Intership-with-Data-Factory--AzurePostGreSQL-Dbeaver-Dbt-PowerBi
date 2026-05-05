@@ -1,0 +1,14 @@
+
+version: 2
+
+models:
+  - name: stg_boutique
+    description: "A staging dbt model for raw_boutique table"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+
