@@ -5,7 +5,7 @@ import os
 folder = "/Users/mac/maketou/data/"
 
 engine = create_engine(
-    "postgresql+psycopg2://maketouintership:Yanel2005@maketouintership.postgres.database.azure.com:5432/postgres"
+    "postgresql+psycopg2://maketou:Yanel2005@maketou.postgres.database.azure.com:5432/postgres"
 )
 
 # nettoyage des caractères NULL
