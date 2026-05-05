@@ -1,0 +1,8 @@
+.venv/
+data/
+logs/
+*.csv
+*.xlsx
+.DS_Store
+.user.yml
+profiles.yml
