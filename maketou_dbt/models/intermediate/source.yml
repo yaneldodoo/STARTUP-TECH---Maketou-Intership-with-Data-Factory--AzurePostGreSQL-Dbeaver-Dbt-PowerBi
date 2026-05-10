@@ -2,3 +2,5 @@ sources:
   - name: public
     tables:
       - name: stg_boutique
+      - name: stg_payment
+      
