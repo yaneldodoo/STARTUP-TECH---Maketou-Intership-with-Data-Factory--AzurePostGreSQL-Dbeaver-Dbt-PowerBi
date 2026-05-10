@@ -8,6 +8,7 @@ WITH source AS (
 renamed AS (
 
     SELECT
+    "ID" as numero_commande,
 
         "Amount" AS montant,
 
