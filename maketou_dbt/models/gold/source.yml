@@ -1,0 +1,6 @@
+sources:
+  - name: public
+    tables:
+      - name: int_boutique
+      - name: int_payment
+      
