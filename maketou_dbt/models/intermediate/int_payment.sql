@@ -1,10 +1,20 @@
-select 
- coalesce(cast("montant" as integer), 0) as montantcommande,
+SELECT 
+    numero_commande,
+
+    COALESCE(montant, 0) AS montantcommande,
+
     date_paiement,
-    coalesce(statut_paiement, 'unknown') as statut_paiement,
-    coalesce(devise_paiement, 'unknown') as devise_paiement,
-    coalesce(erreur_paiement, 'unknown') as erreur_paiement,
-    coalesce(processeur, 'unknown') as processeur,
-    coalesce(methode_paiement, 'unknown') as methode_paiement,
-    coalesce(passerelle_paiement, 'unknown') as passerelle_paiement
-from {{ ref('stg_payment') }}
+
+    COALESCE(statut_paiement, 'unknown') AS statut_paiement,
+
+    COALESCE(devise_paiement, 'unknown') AS devise_paiement,
+
+    COALESCE(erreur_paiement, 'unknown') AS erreur_paiement,
+
+    COALESCE(processeur, 'unknown') AS processeur,
+
+    COALESCE(methode_paiement, 'unknown') AS methode_paiement,
+
+    COALESCE(passerelle_paiement, 'unknown') AS passerelle_paiement
+
+FROM {{ ref('stg_payment') }}

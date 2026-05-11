@@ -1,5 +1,5 @@
 select 
     id,
    created_at,
-    monnaie,
+    pays
 from {{ ref('stg_boutique') }}
