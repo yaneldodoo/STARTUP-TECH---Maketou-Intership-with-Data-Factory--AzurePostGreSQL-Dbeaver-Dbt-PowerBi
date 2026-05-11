@@ -25,7 +25,25 @@ clean as (
             'Month DD, YYYY, HH12:MI AM'
         ) as created_at,
 
-        cast("Currency Code" as varchar) as monnaie
+        case 
+            when "Currency Code" = 'CDF' then 'République démocratique du Congo'
+            when "Currency Code" = 'KES' then 'Kenya'
+            when "Currency Code" = 'NGN' then 'Nigeria'
+            when "Currency Code" = 'XOF' then 'UEMOA (Afrique de l’Ouest)'
+            when "Currency Code" = 'MZN' then 'Mozambique'
+            when "Currency Code" = 'RWF' then 'Rwanda'
+            when "Currency Code" = 'SLE' then 'Sierra Leone'
+            when "Currency Code" = 'MWK' then 'Malawi'
+            when "Currency Code" = 'UGX' then 'Ouganda'
+            when "Currency Code" = 'TZS' then 'Tanzanie'
+            when "Currency Code" = 'ZMW' then 'Zambie'
+            when "Currency Code" = 'XAF' then 'CEMAC (Afrique centrale)'
+            when "Currency Code" = 'GHS' then 'Ghana'
+            else 'Inconnu'
+        end as pays
 
     from source
 )
+
+select *
+from clean

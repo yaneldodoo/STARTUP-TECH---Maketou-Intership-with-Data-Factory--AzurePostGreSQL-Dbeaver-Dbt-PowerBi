@@ -8,9 +8,10 @@ WITH source AS (
 renamed AS (
 
     SELECT
-    "ID" as numero_commande,
 
-        "Amount" AS montant,
+        "ID" AS numero_commande,
+
+        CAST(REPLACE("Amount", ',', '') AS numeric) AS montant,
 
         TO_TIMESTAMP(
             CASE 
