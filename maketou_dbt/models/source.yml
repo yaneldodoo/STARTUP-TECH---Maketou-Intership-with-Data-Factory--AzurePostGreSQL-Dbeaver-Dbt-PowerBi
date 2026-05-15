@@ -2,3 +2,5 @@ sources:
   - name: public
     tables:
       - name: raw_boutique
+      - name: raw_payment 
+      - name: raw_kyc
