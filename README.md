@@ -39,7 +39,11 @@ My mission was to transform these disconnected files into a modern and scalable 
 
 I designed and implemented an end-to-end modern data stack including:
 
-PostgreSQL on Azure
+Airbyte with Docker to the ingestion of CSV 
+
+PostgreSQL on Azure for the tables
+
+Dbeaver for the analytic data base and SQL requests
 
 dbt for data transformation
 
@@ -93,7 +97,7 @@ More importantly, I learned how data can directly support strategic business dec
 
 ## Tech Stack
 
-PostgreSQL
+Docker and Airbyte
 
 Azure Database for PostgreSQL
 
