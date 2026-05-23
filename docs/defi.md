@@ -15,11 +15,3 @@ They also contained hours and time zones, so I had to split and clean them step 
 # # dbt Setup
 
 dbt was only compatible with Python 3.11, so I had to completely rebuild my environment, install the correct Python version, and reinitialize the project.
-
-# # Data Ingestion
-
-Each week, I added one or more CSV files and ingested them into my pipeline using Python. However, every ingestion recreated the table from scratch, the structure was failed.
-
-As a result, the dbt models were crashing because they were not incremental. Each time the ingestion script was launched, the model was rebuilt from zero.
-
-To solve this issue, I used Docker and Airbyte to stabilize and automate the ingestion pipeline.
