@@ -1,53 +1,117 @@
-import pandas as pd
-from sqlalchemy import create_engine
 import os
+import pandas as pd
+import psycopg2
+from io import StringIO
 
 folder = "/Users/mac/maketou/data/"
 
-engine = create_engine(
-    "postgresql+psycopg2://maketou:Yanel2005@maketou.postgres.database.azure.com:5432/postgres"
+conn = psycopg2.connect(
+    host="localhost",
+    database="postgres",
+    user="mac",
+    password="postgres",
+    port=5432
 )
 
-# nettoyage des caractères NULL
-def clean_df(df):
-    return df.apply(lambda col: col.map(
-        lambda x: x.replace('\x00', '') if isinstance(x, str) else x
-    ))
+cursor = conn.cursor()
+
+
+def read_csv_safe(path):
+    encodings = ["utf-8", "latin1", "ISO-8859-1", "cp1252"]
+
+    for enc in encodings:
+        try:
+            print(f"encodage: {enc}")
+
+            df = pd.read_csv(
+                path,
+                encoding=enc,
+                engine="python",
+                on_bad_lines="skip"
+            )
+
+            print(f"ok {enc} | lignes: {len(df)}")
+            return df
+
+        except Exception:
+            print(f"fail {enc}")
+
+    raise Exception("impossible lecture")
+
+
+def clean_dataframe(df):
+    # supprimer NULL bytes
+    df = df.replace({r"\x00": ""}, regex=True)
+
+    # enlever colonnes dupliquées BRUTES
+    df = df.loc[:, ~df.columns.duplicated()]
+
+    return df
+
+
+# 🔥 FIX ULTRA IMPORTANT : éviter duplicates après nettoyage
+def fix_column_names(cols):
+    seen = {}
+    new_cols = []
+
+    for c in cols:
+        c = str(c).strip().lower().replace(" ", "_").replace("-", "_")
+
+        # si colonne existe déjà → rename automatique
+        if c in seen:
+            seen[c] += 1
+            c = f"{c}_{seen[c]}"
+        else:
+            seen[c] = 0
+
+        new_cols.append(c)
+
+    return new_cols
+
+
+def copy_to_postgres(df, table_name):
+
+    # clean colonnes
+    df.columns = fix_column_names(df.columns)
+
+    # tout en string safe
+    df = df.astype(str)
+
+    # création table safe
+    cols = ", ".join([f"{c} TEXT" for c in df.columns])
+
+    cursor.execute(f"DROP TABLE IF EXISTS {table_name}")
+    cursor.execute(f"CREATE TABLE {table_name} ({cols})")
+    conn.commit()
+
+    # COPY rapide
+    buffer = StringIO()
+    df.to_csv(buffer, index=False, header=False)
+    buffer.seek(0)
+
+    cursor.copy_expert(
+        f"COPY {table_name} FROM STDIN WITH CSV",
+        buffer
+    )
+
+    conn.commit()
+
 
 for file in os.listdir(folder):
-
     if not file.endswith(".csv"):
         continue
 
     path = os.path.join(folder, file)
 
-    print(f"\nIngestion RAW : {file}")
+    print(f"\nfichier: {file}")
 
-    df = pd.read_csv(
-        path,
-        sep=",",
-        quotechar='"',
-        encoding="latin-1",
-        engine="python",
-        on_bad_lines="skip"
-    )
+    df = read_csv_safe(path)
+    df = clean_dataframe(df)
 
-    # nettoyage obligatoire
-    df = clean_df(df)
+    table = "raw_" + file.replace(".csv", "").lower()
 
-    print("Shape:", df.shape)
+    print(f"table: {table} | lignes: {len(df)}")
 
-    if df.empty:
-        print("⚠️ EMPTY FILE → skipped")
-        continue
+    copy_to_postgres(df, table)
 
-    table_name = "raw_" + file.replace(".csv", "").lower()
-
-    df.to_sql(
-        table_name,
-        engine,
-        if_exists="replace",
-        index=False
-    )
-
-    print(f"✔ loaded : {table_name}")
+print("ingestion terminée")
