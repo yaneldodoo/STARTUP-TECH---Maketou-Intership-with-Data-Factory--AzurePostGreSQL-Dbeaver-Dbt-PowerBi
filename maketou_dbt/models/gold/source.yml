@@ -3,4 +3,5 @@ sources:
     tables:
       - name: int_boutique
       - name: int_payment
+      - name: int_kyc
       
