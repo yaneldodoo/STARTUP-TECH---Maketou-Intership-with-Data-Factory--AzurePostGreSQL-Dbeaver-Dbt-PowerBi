@@ -15,6 +15,9 @@ SELECT
 
     COALESCE(methode_paiement, 'unknown') AS methode_paiement,
 
-    COALESCE(passerelle_paiement, 'unknown') AS passerelle_paiement
+    COALESCE(passerelle_paiement, 'unknown') AS passerelle_paiement,
+
+    COALESCE(zonemondiale, 'unknown') AS zonemondiale
+
 
 FROM {{ ref('stg_payment') }}

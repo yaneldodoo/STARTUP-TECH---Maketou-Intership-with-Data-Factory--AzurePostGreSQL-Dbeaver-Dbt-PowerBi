@@ -9,36 +9,36 @@ clean as (
 
         to_timestamp(
             case 
-                when "Created At" ilike 'janvier%' then replace("Created At", 'janvier', 'January')
-                when "Created At" ilike 'février%' then replace("Created At", 'février', 'February')
-                when "Created At" ilike 'mars%' then replace("Created At", 'mars', 'March')
-                when "Created At" ilike 'avril%' then replace("Created At", 'avril', 'April')
-                when "Created At" ilike 'mai%' then replace("Created At", 'mai', 'May')
-                when "Created At" ilike 'juin%' then replace("Created At", 'juin', 'June')
-                when "Created At" ilike 'juillet%' then replace("Created At", 'juillet', 'July')
-                when "Created At" ilike 'août%' then replace("Created At", 'août', 'August')
-                when "Created At" ilike 'septembre%' then replace("Created At", 'septembre', 'September')
-                when "Created At" ilike 'octobre%' then replace("Created At", 'octobre', 'October')
-                when "Created At" ilike 'novembre%' then replace("Created At", 'novembre', 'November')
-                when "Created At" ilike 'décembre%' then replace("Created At", 'décembre', 'December')
+                when "created_at" ilike 'janvier%' then replace("created_at", 'janvier', 'January')
+                when "created_at" ilike 'février%' then replace("created_at", 'février', 'February')
+                when "created_at" ilike 'mars%' then replace("created_at", 'mars', 'March')
+                when "created_at" ilike 'avril%' then replace("created_at", 'avril', 'April')
+                when "created_at" ilike 'mai%' then replace("created_at", 'mai', 'May')
+                when "created_at" ilike 'juin%' then replace("created_at", 'juin', 'June')
+                when "created_at" ilike 'juillet%' then replace("created_at", 'juillet', 'July')
+                when "created_at" ilike 'août%' then replace("created_at", 'août', 'August')
+                when "created_at" ilike 'septembre%' then replace("created_at", 'septembre', 'September')
+                when "created_at" ilike 'octobre%' then replace("created_at", 'octobre', 'October')
+                when "created_at" ilike 'novembre%' then replace("created_at", 'novembre', 'November')
+                when "created_at" ilike 'décembre%' then replace("created_at", 'décembre', 'December')
             end,
             'Month DD, YYYY, HH12:MI AM'
         ) as created_at,
 
         case 
-            when "Currency Code" = 'CDF' then 'République démocratique du Congo'
-            when "Currency Code" = 'KES' then 'Kenya'
-            when "Currency Code" = 'NGN' then 'Nigeria'
-            when "Currency Code" = 'XOF' then 'UEMOA (Afrique de l’Ouest)'
-            when "Currency Code" = 'MZN' then 'Mozambique'
-            when "Currency Code" = 'RWF' then 'Rwanda'
-            when "Currency Code" = 'SLE' then 'Sierra Leone'
-            when "Currency Code" = 'MWK' then 'Malawi'
-            when "Currency Code" = 'UGX' then 'Ouganda'
-            when "Currency Code" = 'TZS' then 'Tanzanie'
-            when "Currency Code" = 'ZMW' then 'Zambie'
-            when "Currency Code" = 'XAF' then 'CEMAC (Afrique centrale)'
-            when "Currency Code" = 'GHS' then 'Ghana'
+            when "currency_code" = 'CDF' then 'République démocratique du Congo'
+            when "currency_code" = 'KES' then 'Kenya'
+            when "currency_code" = 'NGN' then 'Nigeria'
+            when "currency_code" = 'XOF' then 'UEMOA (Afrique de l’Ouest)'
+            when "currency_code" = 'MZN' then 'Mozambique'
+            when "currency_code" = 'RWF' then 'Rwanda'
+            when "currency_code" = 'SLE' then 'Sierra Leone'
+            when "currency_code" = 'MWK' then 'Malawi'
+            when "currency_code" = 'UGX' then 'Ouganda'
+            when "currency_code" = 'TZS' then 'Tanzanie'
+            when "currency_code" = 'ZMW' then 'Zambie'
+            when "currency_code" = 'XAF' then 'CEMAC (Afrique centrale)'
+            when "currency_code" = 'GHS' then 'Ghana'
             else 'Inconnu'
         end as pays
 

@@ -3,53 +3,53 @@ with source as (
 ),
 
 renamed as (select 
- "user_ID" as id_utilisateur,
- "kyc_ID" as id_kyc,
+ "user_id" as id_utilisateur,
+ "kyc_id" as id_kyc,
     
     to_timestamp(
         case 
-            when "Updated At" ilike 'janvier%' then replace("Updated At", 'janvier', 'January')
-            when "Updated At" ilike 'février%' then replace("Updated At", 'février', 'February')
-            when "Updated At" ilike 'mars%' then replace("Updated At", 'mars', 'March')
-            when "Updated At" ilike 'avril%' then replace("Updated At", 'avril', 'April')
-            when "Updated At" ilike 'mai%' then replace("Updated At", 'mai', 'May')
-            when "Updated At" ilike 'juin%' then replace("Updated At", 'juin', 'June')
-            when "Updated At" ilike 'juillet%' then replace("Updated At", 'juillet', 'July')
-            when "Updated At" ilike 'août%' then replace("Updated At", 'août', 'August')
-            when "Updated At" ilike 'septembre%' then replace("Updated At", 'septembre', 'September')
-            when "Updated At" ilike 'octobre%' then replace("Updated At", 'octobre', 'October')
-            when "Updated At" ilike 'novembre%' then replace("Updated At", 'novembre', 'November')
-            when "Updated At" ilike 'décembre%' then replace("Updated At", 'décembre', 'December')
+            when "updated_at" ilike 'janvier%' then replace("updated_at", 'janvier', 'January')
+            when "updated_at" ilike 'février%' then replace("updated_at", 'février', 'February')
+            when "updated_at" ilike 'mars%' then replace("updated_at", 'mars', 'March')
+            when "updated_at" ilike 'avril%' then replace("updated_at", 'avril', 'April')
+            when "updated_at" ilike 'mai%' then replace("updated_at", 'mai', 'May')
+            when "updated_at" ilike 'juin%' then replace("updated_at", 'juin', 'June')
+            when "updated_at" ilike 'juillet%' then replace("updated_at", 'juillet', 'July')
+            when "updated_at" ilike 'août%' then replace("updated_at", 'août', 'August')
+            when "updated_at" ilike 'septembre%' then replace("updated_at", 'septembre', 'September')
+            when "updated_at" ilike 'octobre%' then replace("updated_at", 'octobre', 'October')
+            when "updated_at" ilike 'novembre%' then replace("updated_at", 'novembre', 'November')
+            when "updated_at" ilike 'décembre%' then replace("updated_at", 'décembre', 'December')
         end,
         'Month DD, YYYY, HH12:MI AM'
     ) as date_validation_kyc,
 
 to_timestamp(
         case 
-            when "Created At" ilike 'janvier%' then replace("Created At", 'janvier', 'January')
-            when "Created At" ilike 'février%' then replace("Created At", 'février', 'February')
-            when "Created At" ilike 'mars%' then replace("Created At", 'mars', 'March')
-            when "Created At" ilike 'avril%' then replace("Created At", 'avril', 'April')
-            when "Created At" ilike 'mai%' then replace("Created At", 'mai', 'May')
-            when "Created At" ilike 'juin%' then replace("Created At", 'juin', 'June')
-            when "Created At" ilike 'juillet%' then replace("Created At", 'juillet', 'July')
-            when "Created At" ilike 'août%' then replace("Created At", 'août', 'August')
-            when "Created At" ilike 'septembre%' then replace("Created At", 'septembre', 'September')
-            when "Created At" ilike 'octobre%' then replace("Created At", 'octobre', 'October')
-            when "Created At" ilike 'novembre%' then replace("Created At", 'novembre', 'November')
-            when "Created At" ilike 'décembre%' then replace("Created At", 'décembre', 'December')
+            when "created_at" ilike 'janvier%' then replace("created_at", 'janvier', 'January')
+            when "created_at" ilike 'février%' then replace("created_at", 'février', 'February')
+            when "created_at" ilike 'mars%' then replace("created_at", 'mars', 'March')
+            when "created_at" ilike 'avril%' then replace("created_at", 'avril', 'April')
+            when "created_at" ilike 'mai%' then replace("created_at", 'mai', 'May')
+            when "created_at" ilike 'juin%' then replace("created_at", 'juin', 'June')
+            when "created_at" ilike 'juillet%' then replace("created_at", 'juillet', 'July')
+            when "created_at" ilike 'août%' then replace("created_at", 'août', 'August')
+            when "created_at" ilike 'septembre%' then replace("created_at", 'septembre', 'September')
+            when "created_at" ilike 'octobre%' then replace("created_at", 'octobre', 'October')
+            when "created_at" ilike 'novembre%' then replace("created_at", 'novembre', 'November')
+            when "created_at" ilike 'décembre%' then replace("created_at", 'décembre', 'December')
         end,
         'Month DD, YYYY, HH12:MI AM'
     ) as date_creation_kyc,
 
 case  
-    when "Status" ilike 'validated%' then 'validé'
-    when "Status" ilike 'rejected%'  then 'refusé'
-    when "Status" ilike 'pending%'  then 'en cours'
-    when "Status" ilike 'canceled%'  then 'annulé'
+    when "status" ilike 'validated%' then 'validé'
+    when "status" ilike 'rejected%'  then 'refusé'
+    when "status" ilike 'pending%'  then 'en cours'
+    when "status" ilike 'canceled%'  then 'annulé'
 end as statut_kyc,
 
-"Rejection Reason" as raison_refus_kyc
+"rejection_reason" as raison_refus_kyc
 
 from source
 ) 

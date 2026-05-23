@@ -1,3 +1,30 @@
-version : 2
- models:
-  name : 
+
+version: 2
+
+models:
+  - name: int_boutique
+    description: "A staging dbt model for raw_boutique table"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+  - name: int_kyc
+    description: "A staging dbt model for raw_boutique table"
+    columns:
+      - name: id_kyc
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+  - name: int_payment
+    description: "A staging dbt model for raw_boutique table"
+    columns:
+      - name: numero_commande
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
