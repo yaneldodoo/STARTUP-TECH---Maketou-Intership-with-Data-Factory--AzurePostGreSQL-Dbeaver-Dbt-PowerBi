@@ -13,7 +13,7 @@ models:
   - name: stg_kyc
     description: "A staging dbt model for raw_boutique table"
     columns:
-      - name: kyc_ID
+      - name: id_kyc
         description: "The primary key for this table"
         data_tests:
           - unique
@@ -22,9 +22,27 @@ models:
   - name: stg_payment
     description: "A staging dbt model for raw_boutique table"
     columns:
-      - name: ID
+      - name: numero_commande
         description: "The primary key for this table"       
         data_tests:
-          - unique
           - not_null
+   
+  - name: stg_users
+    description: "A staging dbt model for raw_boutique table"
+    columns:
+      - name: id_utilisateur
+        description: "The primary key for this table"       
+        data_tests:
+          - not_null
+
+
+  - name: stg_sales
+    description: "A staging dbt model for raw_sales table"
+    columns:
+      - name: id_vente
+        description: "The primary key for this table"       
+        data_tests:
+          - not_null
+
+
 

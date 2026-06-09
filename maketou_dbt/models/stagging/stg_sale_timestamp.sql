@@ -1,16 +1,11 @@
-with source as (
-    select * 
-    
-    FROM {{ source('public','raw_users') }}
+with source as 
+( select * 
+FROM {{ source('public', 'raw_sale_timestamp') }}
 ),
 
-renamed as ( select  
-
-
-    "user_id" as id_utilisateur,
-    "two_factor_auth_enabled" as activation_2fa,
-    "two_factor_auth_method" as methode_2fa,
-
+renamed as ( 
+    Select 
+    sale_id as id_vente,
 TO_TIMESTAMP(
             CASE 
                 WHEN "created_at" ILIKE 'janvier%' THEN REPLACE("created_at", 'janvier', 'January')
@@ -27,8 +22,10 @@ TO_TIMESTAMP(
                 WHEN "created_at" ILIKE 'décembre%' THEN REPLACE("created_at", 'décembre', 'December')
             END,
             'Month DD, YYYY, HH12:MI AM'
-        ) AS date_creation_user
+        ) AS date_vente
 
-        from source )
+        from source 
+)
 
-      select * from renamed
+
+select * from renamed
