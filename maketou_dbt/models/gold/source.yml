@@ -1,7 +1,10 @@
 sources:
-  - name: public
+  - name: dbt
     tables:
       - name: int_boutique
       - name: int_payment
       - name: int_kyc
+      - name: int_users
+      - name: int_sales
+      - name: int_store_access
       

@@ -1,7 +1,7 @@
+-- ce gold est pour calculer le taux de conversion par orchestrateur
+
 select 
-    date_trunc('month', date_paiement) AS mois,
-    date_trunc('year', date_paiement) AS annee,
- 
+passerelle_paiement,
     round(
         (
             count(*) filter (where "statut_paiement" = 'completed')::numeric
@@ -10,4 +10,4 @@ select
         2
     ) as taux_conversion_succes
 from {{ ref('int_payment') }}
-group by annee, mois
+group by passerelle_paiement
