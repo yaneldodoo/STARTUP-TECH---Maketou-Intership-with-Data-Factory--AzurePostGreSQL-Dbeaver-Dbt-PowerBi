@@ -1,6 +1,9 @@
 sources:
-  - name: public
+  - name: dbt
     tables:
       - name: stg_boutique
       - name: stg_payment
-      
+      - name: stg_kyc
+      - name: stg_users
+      - name: stg_sales
+      - name: stg_store_access
