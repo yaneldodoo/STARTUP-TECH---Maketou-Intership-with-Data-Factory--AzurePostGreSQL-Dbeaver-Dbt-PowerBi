@@ -1,3 +1,5 @@
+-- ce gold est pour voir l'arbre de ventes,tracer un treemap afin de voir les plus grosses boutiques, leurs pays phares, les ventes les plus elevés 
+
 select 
 id_vente,
 id_acheteur,

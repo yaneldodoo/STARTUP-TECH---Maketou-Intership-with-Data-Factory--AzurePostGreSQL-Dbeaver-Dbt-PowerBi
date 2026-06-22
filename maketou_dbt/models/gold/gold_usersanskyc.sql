@@ -1,3 +1,5 @@
+-- ce gold est fait pour voir le nombre d'utilisateurs sans KYC
+
 select
     u.id_utilisateur as nb_usersanskyc
 from {{ ref('int_users') }} u

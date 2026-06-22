@@ -1,3 +1,5 @@
+--ce gold est pour voir le nombre de users, quand ils s'inscrivent, le pic, s'ils ont activé leur 2fa ou non
+
 select 
 
 cast (coalesce(id_utilisateur, 'unknown') as VARCHAR(255)) as id_utilisateur,

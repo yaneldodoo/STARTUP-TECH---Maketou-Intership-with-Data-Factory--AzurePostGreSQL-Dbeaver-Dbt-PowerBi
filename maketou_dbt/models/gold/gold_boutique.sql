@@ -1,3 +1,5 @@
+-- ce gold est pour voir les boutiques crées et quand elles ont étés créee 
+
 select 
     id,
     created_at,

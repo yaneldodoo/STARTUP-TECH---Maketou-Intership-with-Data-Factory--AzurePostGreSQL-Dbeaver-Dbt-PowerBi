@@ -1,3 +1,4 @@
+-- ce gold est pour voir les kyc crées et quand ils ont étés créés  et validés, leur statut,le nombre d'users, le nombre de kyc
 SELECT
     date_trunc('month', date_creation_kyc) as mois_creation, 
     date_trunc('month', date_validation_kyc) as mois_validation,

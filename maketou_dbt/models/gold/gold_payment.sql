@@ -1,3 +1,5 @@
+-- ce gold est fait pour trier les paiements, leurs nombres en fonction des mois et années, le processeur, la méthode de paiement, le statut de paiement et l'erreur de paiement
+
 SELECT 
 
     date_trunc('month', date_paiement) AS mois,

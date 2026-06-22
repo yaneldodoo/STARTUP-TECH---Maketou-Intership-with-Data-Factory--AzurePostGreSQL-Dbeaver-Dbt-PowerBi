@@ -1,3 +1,5 @@
+-- ce gold est pour voir la raison de refus des kyc et le nombre de kyc refusés par raison
+
 SELECT
     raison_refus_kyc,
 

@@ -1,3 +1,5 @@
+-- ce gold calcule le taux de conversion des paiements par pays,
+
 select 
 "zonemondiale" as pays ,
     round(
